@@ -2,28 +2,28 @@ import React from 'react';
 import { Button, StyleSheet, Text, TouchableHighlight, View, Dimensions, Alert } from 'react-native';
 
 function Detail_Date({route, navigation}) {
-    const { name, lastname, document, birthday, residence_city, neighborhood, cellphone } = route.params.user;
+    const { name, lastname, document, birthday, residence_city, neighborhood, cellphone } = route.params.date;
     const delete_Date = () => {
-        // try {
-        //     const response = await fetch('/deletedate', {
-        //         method: 'DELETE',
-        //         headers: {
-        //             Accept: 'application/json',
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({
-        //             id: id
-        //         })
-        //     });
-        //     const json = await response.json();
-        //     Alert.alert("User Deleted Successfully");
-        //     navigation.goBack();
-        // } catch (error) {
-        //     Alert.alert(error);
-        // }
+        try {
+            const response = await fetch('/deletedate', {
+                method: 'DELETE',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: id
+                })
+            });
+            const json = await response.json();
+            Alert.alert("Date Deleted Successfully");
+            navigation.goBack();
+        } catch (error) {
+            Alert.alert(error);
+        }
     }
     const update_Date = () => {
-        // navigation.navigate('Update',{date:route.params.date})
+        navigation.navigate('Dates Update',{date:route.params.date})
     }
     return (
         <View style={styles.container}>

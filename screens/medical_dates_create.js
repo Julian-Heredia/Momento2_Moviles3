@@ -4,7 +4,7 @@ import { TouchableHighlight } from "react-native-gesture-handler";
 import { TextInput } from "react-native-gesture-handler";
 import { useState } from "react";
 
-function MedicalDateCreate () {
+function MedicalDateCreate (navigation) {
     const [name, setName] = useState("");
     const [lastname, setLastname] = useState("");
     const [document, setDcoument] = useState("");
@@ -12,6 +12,32 @@ function MedicalDateCreate () {
     const [residence_city, setResidence_City] = useState("");
     const [neighborhood, setNeighborhood] = useState("");
     const [cellphone, setCellphone] = useState("");
+
+    const create_Date =  async () => {
+        try {
+            const response = await fetch('/createdate', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    lastname: lastname,
+                    document: document,
+                    birthday: birthday,
+                    residence_city: residence_city,
+                    neighborhood: neighborhood,
+                    cellphone: cellphone
+                })
+            });
+            const json = await response.json();
+            Alert.alert("Date Created Successfully");
+            navigation.goBack();
+        } catch (error) {
+            Alert.alert(error);
+        }
+    }
 
     return(      
         <View style={styles.container}>
@@ -30,7 +56,7 @@ function MedicalDateCreate () {
         <TextInput style={styles.textInput} onChangeText={text => setNeighborhood(text)} placeholder="Neighborhood"></TextInput>
         <Text style={styles.textStyle}>Cellphone</Text>
         <TextInput style={styles.textInput} onChangeText={text => setCellphone(text)} placeholder="Cellphone"></TextInput>
-        <TouchableHighlight style={styles.styleCreateButton}>
+        <TouchableHighlight style={styles.styleCreateButton} onPress={create_Date}>
             <Text style={styles.textCreateButton}>Create Date</Text>
         </TouchableHighlight>
         </ScrollView>

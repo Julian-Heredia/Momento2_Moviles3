@@ -19,23 +19,16 @@ function List_Dates({ navigation }) {
         navigation.navigate('Dates Detail',{date: item})
     }
 
-    useEffect(() => {
-        console.log("isFocused: " + isFocused);
-        List_Dates();
-    }, [isFocused]);
+    // useEffect(() => {
+    //     console.log("isFocused: " + isFocused);
+    //     List_Dates();
+    // }, [isFocused]);
 
     return (
         <View style={styles.container}>
-            <TouchableHighlight style={styles.styleCreateButton} onPress={() => navigation.navigate('Dates Assignment')}>
-                <Text style={styles.textCreateButton}>Create Date</Text>
-            </TouchableHighlight>
-            <FlatList
-                data={dates}
-                renderItem={({ item }) => <TouchableHighlight style={style.listButton} onPress={() => detailDate(item)}>
-                    <CardComponent date={item}></CardComponent>
-                </TouchableHighlight>}
-                keyExtractor={item => item.id}
-            ></FlatList>
+            <FlatList data={dates} renderItem={({ item }) => <TouchableHighlight style={style.listButton} onPress={() => detailDate(item)}>
+            <CardComponent date={item}></CardComponent></TouchableHighlight>} keyExtractor={item => item.id}>
+            </FlatList>
         </View>
     );
 }

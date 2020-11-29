@@ -13,9 +13,9 @@ function MedicalDateCreate (navigation) {
     const [neighborhood, setNeighborhood] = useState("");
     const [cellphone, setCellphone] = useState("");
 
-    const create_Date =  async () => {
+    const create_Date_Test = async () => {
         try {
-            if (name=="" && lastname=="" && document=="" && birthday=="" && residence_city=="" && neighborhood=="" && cellphone=="") {
+            if (name == "" && lastname == "" && document == "" && birthday == "" && residence_city == "" && neighborhood == "" && cellphone == "") {
                 Alert.alert("You must fill all the fields");
             }
             else if (name == "") {
@@ -49,30 +49,77 @@ function MedicalDateCreate (navigation) {
                 Alert.alert("the number must have 10 digits");
             }
             else {
-            const response = await fetch('/createdate', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    lastname: lastname,
-                    document: document,
-                    birthday: birthday,
-                    residence_city: residence_city,
-                    neighborhood: neighborhood,
-                    cellphone: cellphone
-                })
-            });
-            const json = await response.json();
-            Alert.alert("Date Created Successfully");
-            navigation.goBack();
+        Alert.alert("OK")
             }
-        } catch (error) {
-            Alert.alert(error);
-        }
+    }catch (error) {
+        Alert.alert(error);
     }
+}
+    // const create_Date = async () => {
+    //     try {
+    //         if (name == "" && lastname == "" && document == "" && birthday == "" && residence_city == "" && neighborhood == "" && cellphone == "") {
+    //             Alert.alert("You must fill all the fields");
+    //         }
+    //         else if (name == "") {
+    //             Alert.alert("You must enter your name");
+    //         }
+    //         else if (lastname == "") {
+    //             Alert.alert("You must enter your last name");
+    //         }
+    //         else if (document == "") {
+    //             Alert.alert("You must enter your document number");
+    //         }
+    //         else if (isNaN(document)) {
+    //             Alert.alert("Document must be numeric");
+    //         }
+    //         else if (document.length < 5) {
+    //             Alert.alert("The document must be greater than 5 characters");
+    //         }
+    //         else if (birthday == "") {
+    //             Alert.alert("you must enter your birthday");
+    //         }
+    //         else if (residence_city == "") {
+    //             Alert.alert("You must enter your city of residence");
+    //         }
+    //         else if (neighborhood == "") {
+    //             Alert.alert("You must enter your neighborhood where you live");
+    //         }
+    //         else if (cellphone == "") {
+    //             Alert.alert("You must enter your cell phone number");
+    //         }
+    //         else if (cellphone < 10) {
+    //             Alert.alert("the number must have 10 digits");
+    //         }
+    //         else {
+    //             // Alert.alert(
+    //             //     'Saving your date', 'Are you sure the data entered is correct?', [{ text: 'No', value: false},
+    //             //     { text: 'Yes', value: true}], { cancelable: false });
+    //             // if (Alert.alert == true) {
+    //             //     const response = await fetch('/createdate', {
+    //             //         method: 'POST',
+    //             //         headers: {
+    //             //             Accept: 'application/json',
+    //             //             'Content-Type': 'application/json',
+    //             //         },
+    //             //         body: JSON.stringify({
+    //             //             name: name,
+    //             //             lastname: lastname,
+    //             //             document: document,
+    //             //             birthday: birthday,
+    //             //             residence_city: residence_city,
+    //             //             neighborhood: neighborhood,
+    //             //             cellphone: cellphone
+    //             //         })
+    //             //     });
+    //             //     const json = await response.json();
+    //             //     Alert.alert("Date Created Successfully");
+    //             //     navigation.goBack();
+    //             // }
+    //         }
+    //     } catch (error) {
+    //         Alert.alert(error);
+    //     }
+    // }
 
     return(      
         <View style={styles.container}>
@@ -91,7 +138,7 @@ function MedicalDateCreate (navigation) {
         <TextInput style={styles.textInput} onChangeText={text => setNeighborhood(text)} placeholder="Neighborhood"></TextInput>
         <Text style={styles.textStyle}>Cellphone</Text>
         <TextInput style={styles.textInput} onChangeText={text => setCellphone(text)} placeholder="Cellphone"></TextInput>
-        <TouchableHighlight style={styles.styleCreateButton} onPress={create_Date}>
+        <TouchableHighlight style={styles.styleCreateButton} onPress={create_Date_Test}>
             <Text style={styles.textCreateButton}>Create Date</Text>
         </TouchableHighlight>
         </ScrollView>

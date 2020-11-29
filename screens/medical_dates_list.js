@@ -16,7 +16,7 @@ function List_Dates({ navigation }) {
     }
 
     const detailDate = (item) => {
-        navigation.navigate('Detail',{dates: item})
+        navigation.navigate('Dates Detail',{date: item})
     }
 
     useEffect(() => {
@@ -27,12 +27,12 @@ function List_Dates({ navigation }) {
     return (
         <View style={styles.container}>
             <TouchableHighlight style={styles.styleCreateButton} onPress={() => navigation.navigate('Dates Assignment')}>
-                <Text style={styles.textCreateButton}>Create User</Text>
+                <Text style={styles.textCreateButton}>Create Date</Text>
             </TouchableHighlight>
             <FlatList
                 data={dates}
                 renderItem={({ item }) => <TouchableHighlight style={style.listButton} onPress={() => detailDate(item)}>
-                    <CardComponent user={item}></CardComponent>
+                    <CardComponent date={item}></CardComponent>
                 </TouchableHighlight>}
                 keyExtractor={item => item.id}
             ></FlatList>

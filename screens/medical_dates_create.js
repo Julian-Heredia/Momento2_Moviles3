@@ -15,6 +15,43 @@ function MedicalDateCreate (navigation) {
 
     const create_Date =  async () => {
         try {
+            if (name=="" && lastname=="" && document=="" && birthday=="" && residence_city=="" && neighborhood=="" && cellphone=="") {
+                Alert.alert("You must fill all the fields");
+            }
+            else if (name == "") {
+                Alert.alert("You must enter your name");
+            }
+            else if (lastname == "") {
+                Alert.alert("You must enter your last name");
+            }
+            else if (document == "") {
+                Alert.alert("You must enter your document number");
+            }
+            else if (isNaN(document)) {
+                Alert.alert("Document must be numeric");
+            }
+            else if (document.length < 5) {
+                Alert.alert("The document must be greater than 5 characters");
+            }
+            else if (birthday == "") {
+                Alert.alert("you must enter your birthday");
+            }
+            else if (residence_city == "") {
+                Alert.alert("You must enter your city of residence");
+            }
+            else if (neighborhood == "") {
+                Alert.alert("You must enter your neighborhood where you live");
+            }
+            else if (cellphone == "") {
+                Alert.alert("You must enter your cell phone number");
+            }
+            else if (isNaN(cellphone)) {
+                Alert.alert("only numbers are allowed");
+            }
+            else if (cellphone < 10) {
+                Alert.alert("the number must have 10 digits");
+            }
+            else {
             const response = await fetch('/createdate', {
                 method: 'POST',
                 headers: {
@@ -34,6 +71,7 @@ function MedicalDateCreate (navigation) {
             const json = await response.json();
             Alert.alert("Date Created Successfully");
             navigation.goBack();
+            }
         } catch (error) {
             Alert.alert(error);
         }
@@ -63,6 +101,7 @@ function MedicalDateCreate (navigation) {
     </View>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {

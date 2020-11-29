@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, TouchableHighlight, View, Dimensions, Alert }
 
 function Detail_Date({route, navigation}) {
     const { name, lastname, document, birthday, residence_city, neighborhood, cellphone } = route.params.date;
-    const delete_Date = () => {
+    const delete_Date = async () => {
         try {
             const response = await fetch('/deletedate', {
                 method: 'DELETE',

@@ -45,9 +45,6 @@ function MedicalDateCreate (navigation) {
             else if (cellphone == "") {
                 Alert.alert("You must enter your cell phone number");
             }
-            else if (isNaN(cellphone)) {
-                Alert.alert("only numbers are allowed");
-            }
             else if (cellphone < 10) {
                 Alert.alert("the number must have 10 digits");
             }
